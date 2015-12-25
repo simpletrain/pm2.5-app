@@ -81,8 +81,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void populate(List<PM25> data) {
         if (data != null && !data.isEmpty()) {
-            PM25 pm25 = data.get(0);
-            pm25TextView.setText(pm25.getPositionName() + pm25.getQuality());
+            String text = "";
+            for(int i = 0;i<data.size();i++){
+                PM25 pm25 = data.get(i);
+                if(pm25.getPositionName() != null) {
+                    text += (pm25.getPositionName() + " PM2.5:" + pm25.getPm25() + " 数据时间:" + pm25.getTimePoint() + "\n");
+                }
+            }
+            pm25TextView.setText(text);
         }
     }
 }
